@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Inequalities Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sekuya&display=swap" rel="stylesheet">
+    <!-- Modern font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- MathJax for rendering math -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Math <span>Region</span></h1>
+            <p>Enter a linear inequality (or multiple) to see the step-by-step solutions and intersecting regions on the Cartesian plane.</p>
+        </header>
+        
+        <main>
+            <div class="input-panel">
+                <form id="ineq-form">
+                    <label for="ineq-input">Enter Inequalities (one per line, or comma-separated)</label>
+                    <div class="input-group">
+                        <textarea id="ineq-input" rows="3" placeholder="2x - 3y <= 6&#10;y > x + 2"></textarea>
+                        <button type="submit" id="solve-btn">Solve & Plot</button>
+                    </div>
+                </form>
+                <div id="error-message" class="hidden alert alert-danger"></div>
+            </div>
+
+            <div class="results-panel hidden" id="results">
+                <div class="steps-container shadow-card">
+                    <h2>Step-by-step Solution</h2>
+                    <div id="steps-list"></div>
+                    <button id="next-step-btn" class="hidden">Next Step</button>
+                </div>
+                <div class="graph-container shadow-card">
+                    <div class="graph-header">
+                        <h2>Graph Visualization</h2>
+                        <button id="expand-graph-btn" title="Expand Graph">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                        </button>
+                    </div>
+                    <div id="plot-div"></div>
+                    <div id="intervals-div" class="hidden intervals-container">
+                        <h3>Feasible Region</h3>
+                        <div class="intervals-content">
+                            <span id="x-interval"></span>
+                            <span id="y-interval"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/script.js"></script>
+
+    <!-- Modal for expanded graph -->
+    <div id="graph-modal" class="modal hidden">
+        <div class="modal-content shadow-card">
+            <span class="close-btn">&times;</span>
+            <div id="modal-plot-div"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,330 @@
+:root {
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --error-bg: #fee2e2;
+    --error-text: #b91c1c;
+    --border-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+.app-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.025em;
+    font-family: 'Sekuya', sans-serif;
+}
+
+header h1 span {
+    color: var(--primary);
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+.input-panel {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-bottom: 2rem;
+}
+
+.input-panel label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: 'Inter', monospace;
+    resize: vertical;
+}
+
+.input-group textarea:focus {
+    border-color: var(--primary);
+}
+
+.input-group button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.input-group button:hover {
+    background-color: var(--primary-hover);
+}
+
+.input-group button:active {
+    transform: scale(0.98);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+.alert-danger {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+}
+
+.results-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .results-panel {
+        grid-template-columns: 1fr;
+    }
+}
+
+.shadow-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.graph-container {
+    position: sticky;
+    top: 2rem;
+}
+
+.shadow-card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--bg-color);
+}
+
+.steps-container ul {
+    list-style-type: none;
+    counter-reset: steps-counter;
+}
+
+.steps-container li {
+    background: var(--bg-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    position: relative;
+    padding-left: 3rem;
+}
+
+.steps-container li::before {
+    counter-increment: steps-counter;
+    content: counter(steps-counter);
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary);
+    color: white;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.step-desc {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.step-math {
+    font-size: 1.2rem;
+    color: var(--text-main);
+}
+
+#plot-div {
+    width: 100%;
+    height: 400px;
+}
+
+#next-step-btn {
+    background-color: var(--text-muted);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+#next-step-btn:hover {
+    background-color: #4b5563;
+}
+
+#next-step-btn:active {
+    transform: scale(0.98);
+}
+
+.graph-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--bg-color);
+}
+
+.graph-header h2 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+#expand-graph-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+#expand-graph-btn:hover {
+    background-color: var(--bg-color);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.hidden {
+    display: none !important;
+}
+
+.modal-content {
+    width: 90%;
+    height: 90%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--text-muted);
+    z-index: 1010;
+}
+
+.close-btn:hover {
+    color: var(--text-main);
+}
+
+#modal-plot-div {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.intervals-container {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+}
+
+.intervals-container h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.intervals-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
